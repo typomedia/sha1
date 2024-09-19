@@ -1,0 +1,15 @@
+[package]
+name = "sha1"
+version = "1.0.0"
+authors = ["Philipp Speck <philipp@typo.media>"]
+edition = "2021"
+
+[profile.release]
+strip = true
+lto = true
+opt-level = "z"
+panic = "abort"
+
+[dependencies]
+clap = "3.2.0"
+sha1 = "0.10.6"
