@@ -1,4 +1,4 @@
-use clap::{App, Arg};
+use clap::{Arg, Command};
 use sha1::{Digest, Sha1};
 use std::fs::File;
 use std::io::Read;
@@ -13,30 +13,28 @@ struct Output {
 }
 
 fn main() {
-    let matches = App::new("sha1")
+    let matches = Command::new("sha1")
         .version("1.0.0")
         .about("Hashes a string or file using SHA-1")
         .arg(
-            Arg::with_name("string")
+            Arg::new("string")
                 .short('s')
                 .long("string")
                 .value_name("STRING")
                 .help("String to be hashed")
-                .takes_value(true),
         )
         .arg(
-            Arg::with_name("file")
+            Arg::new("file")
                 .short('f')
                 .long("file")
                 .value_name("FILE")
                 .help("File to be hashed")
-                .takes_value(true),
         )
         .get_matches();
 
     let input = Input {
-        string: matches.value_of("string").map(|s| s.to_string()),
-        file: matches.value_of("file").map(|f| f.to_string()),
+        string: matches.get_one::<String>("string").cloned(),
+        file: matches.get_one::<String>("file").cloned(),
     };
 
     let mut output = Output {

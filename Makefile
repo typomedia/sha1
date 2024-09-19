@@ -4,3 +4,6 @@ build: init
 init:
 	rustup update
 	rustup component add rustfmt
+
+clean:
+	cargo clean

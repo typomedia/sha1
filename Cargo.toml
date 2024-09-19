@@ -11,5 +11,5 @@ opt-level = "z"
 panic = "abort"
 
 [dependencies]
-clap = "3.2.0"
-sha1 = "0.10.6"
+clap = "4.5"
+sha1 = "0.10"
