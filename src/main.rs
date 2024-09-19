@@ -15,6 +15,7 @@ struct Output {
 fn main() {
     let matches = Command::new("sha1")
         .version("1.0.0")
+        .author("Philipp Speck <philipp@typo.media>")
         .about("Hashes a string or file using SHA-1")
         .arg(
             Arg::new("string")
@@ -30,6 +31,12 @@ fn main() {
                 .value_name("FILE")
                 .help("File to be hashed")
         )
+        .help_template(
+            "{bin} {version} {author}\n\
+            {about}\n\n\
+            {usage-heading} {usage}\n\n\
+            {all-args}{after-help}\n",
+        ) // Custom help template to include author
         .get_matches();
 
     let input = Input {
